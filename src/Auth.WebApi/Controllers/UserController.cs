@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Auth.WebApi.Controllers;
 
@@ -17,4 +18,12 @@ public class UserController : ControllerBase
 
         return Ok(claims);
     }
+
+    [HttpGet("api/accesstoken")]
+    public async Task<IActionResult> GetAccessToken()
+    {
+        string? token = await HttpContext.GetTokenAsync("access_token");
+        return Ok(token);
+    }
+
 }
