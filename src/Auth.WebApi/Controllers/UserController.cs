@@ -26,4 +26,11 @@ public class UserController : ControllerBase
         return Ok(token);
     }
 
+    [HttpGet("api/idtoken")]
+    public async Task<IActionResult> GetIdToken()
+    {
+        string? token = await HttpContext.GetTokenAsync("id_token");
+        return Ok(token);
+    }
+
 }
